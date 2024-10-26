@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper-user">
 
-	<select id="setLogin"
-		resultType="com.team03.Ohfifthlane_back.vo.UserVO"
-		parameterType="com.team03.Ohfifthlane_back.vo.UserVO">
+	<select id="getUserByIdAndPassword"
+		resultType="com.team03.Ohfifthlane_back.vo.AccountVO"
+		parameterType="com.team03.Ohfifthlane_back.vo.AccountVO">
 
-		select user_id, user_password
-		from users
-		where user_id = #{userId} and user_password = #{passWord}
+		select account_email, account_password
+		from Account_tbl
+		where account_email = #{accountEmail} and account_password = #{accountPassword}
 
 	</select>
 
