@@ -5,6 +5,7 @@ public class AccountVO {
 	String accountEmail;
 	String accountPassword;
 	int accountLevel; // 회원 등급
+	
 	public int getAccountId() {
 		return accountId;
 	}

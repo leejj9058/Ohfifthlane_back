@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.team03.Ohfifthlane_back.dao.UserDAO;
 import com.team03.Ohfifthlane_back.vo.AccountVO;
+import com.team03.Ohfifthlane_back.vo.UserVO;
 
 @RestController
 @RequestMapping("/api")
@@ -31,6 +32,21 @@ public class Maincontroller {
 	}
 	
 	
+	//아이디 찾기 대충
+	@PostMapping("/findId")
+	public ResponseEntity<?> findId(@RequestBody UserVO uvo) {
 		
+		String accountEmail = dao.userFindId(uvo);
+		
+		System.out.println("AccountVO avo = " + accountEmail);
+		
+		if(accountEmail == null) {
+			return ResponseEntity.badRequest().body("등록된 회원 정보가 없습니다."); // 에러메세지
+		}
+		
+		return ResponseEntity.ok(accountEmail);
+	}	
+	
+	
 	
 }
