@@ -1,81 +1,60 @@
 package com.team03.Ohfifthlane_back.vo;
 
 public class UserVO {
+	
 	int userId;
-	int userType;
-	String email; // 아이디=이메일
-	String password;
-	String name;
-	String rrnFront;
-	String rrnBack;
-	String nickname;
-	String phoneNum;
-	String address;
+	String userName;
+	String userSSNFront;
+	String userSSNBack;
+	String userTel;
+	String userAddress;
+	
+	
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public int getUserType() {
-		return userType;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserType(int userType) {
-		this.userType = userType;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserSSNFront() {
+		return userSSNFront;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserSSNFront(String userSSNFront) {
+		this.userSSNFront = userSSNFront;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserSSNBack() {
+		return userSSNBack;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserSSNBack(String userSSNBack) {
+		this.userSSNBack = userSSNBack;
 	}
-	public String getName() {
-		return name;
+	public String getUserTel() {
+		return userTel;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
 	}
-	public String getRrnFront() {
-		return rrnFront;
+	public String getUserAddress() {
+		return userAddress;
 	}
-	public void setRrnFront(String rrnFront) {
-		this.rrnFront = rrnFront;
-	}
-	public String getRrnBack() {
-		return rrnBack;
-	}
-	public void setRrnBack(String rrnBack) {
-		this.rrnBack = rrnBack;
-	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	@Override
-	public String toString() {
-		return "UserVO [userId=" + userId + ", userType=" + userType + ", email=" + email + ", password=" + password
-				+ ", name=" + name + ", rrnFront=" + rrnFront + ", rrnBack=" + rrnBack + ", nickname=" + nickname
-				+ ", phoneNum=" + phoneNum + ", address=" + address + "]";
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "UserVO [userId=" + userId + ", userName=" + userName + ", userSSNFront=" + userSSNFront
+				+ ", userSSNBack=" + userSSNBack + ", userTel=" + userTel + ", userAddress=" + userAddress + "]";
+	}
+	
+	
+	
+
 }
