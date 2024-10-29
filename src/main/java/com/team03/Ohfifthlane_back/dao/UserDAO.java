@@ -19,6 +19,17 @@ public class UserDAO {
 
 	public String userFindId(UserVO uvo) {
 		
-		return session.selectOne("getUserEmailByNameAndUserSSNFront", uvo);
+		return session.selectOne("getUserEmailByNameAndUserSSN", uvo);
+	}
+
+	public void createUser(UserVO uvo) {
+		
+		session.insert("createUser", uvo);
+		
+	}
+
+	public int checkEmail(String accountEmail) {
+		
+		return session.selectOne("checkEmail", accountEmail);
 	}
 }

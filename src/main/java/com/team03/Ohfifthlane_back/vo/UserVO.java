@@ -8,7 +8,7 @@ public class UserVO {
 	String userSSNBack;
 	String userTel;
 	String userAddress;
-	
+	int accountId;
 	
 	public int getUserId() {
 		return userId;
@@ -46,13 +46,24 @@ public class UserVO {
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
+	public int getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
 	
 	
 	@Override
 	public String toString() {
 		return "UserVO [userId=" + userId + ", userName=" + userName + ", userSSNFront=" + userSSNFront
-				+ ", userSSNBack=" + userSSNBack + ", userTel=" + userTel + ", userAddress=" + userAddress + "]";
+				+ ", userSSNBack=" + userSSNBack + ", userTel=" + userTel + ", userAddress=" + userAddress
+				+ ", accountId=" + accountId + "]";
 	}
+	
+	
+	
+	
 	
 	
 	
