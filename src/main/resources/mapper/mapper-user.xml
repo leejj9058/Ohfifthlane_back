@@ -55,6 +55,7 @@
 		WHERE account_email = #{accountEmail}
 	</select>
 	
+	<!-- 반경500미터 주차장만 가져오기 -->
 	<select id="getNearRPZList" 
 	parameterType="com.team03.Ohfifthlane_back.vo.UserLocationVO" 
 	resultType="com.team03.Ohfifthlane_back.vo.RPZVO">

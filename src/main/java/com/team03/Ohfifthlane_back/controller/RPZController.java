@@ -26,12 +26,8 @@ public class RPZController {
 	@PostMapping("/nearRPZList")
 	public ResponseEntity<List<RPZVO>> getNearRPZList(@RequestBody UserLocationVO ulVO) {
 		
-		ulVO.setUserLat(BigDecimal.valueOf(37.6173693));
-		ulVO.setUserlon(BigDecimal.valueOf(127.0315535));
 		
 		List<RPZVO> nearRPZList = dao.getNearRPZList(ulVO);
-		
-		System.out.println("nearRPZList: " + nearRPZList);
 		
 		return ResponseEntity.ok(nearRPZList);
 	}

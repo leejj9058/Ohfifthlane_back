@@ -13,11 +13,11 @@ public class UserLocationVO {
 	public void setUserLat(BigDecimal userLat) {
 		this.userLat = userLat;
 	}
-	public BigDecimal getUserlon() {
+	public BigDecimal getUserLon() {
 		return userLon;
 	}
-	public void setUserlon(BigDecimal userlon) {
-		this.userLon = userlon;
+	public void setUserLon(BigDecimal userLon) {
+		this.userLon = userLon;
 	}
 	@Override
 	public String toString() {
