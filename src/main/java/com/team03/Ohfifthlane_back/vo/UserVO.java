@@ -2,13 +2,13 @@ package com.team03.Ohfifthlane_back.vo;
 
 public class UserVO {
 	
-	int userId;
-	String userName;
-	String userSSNFront;
-	String userSSNBack;
-	String userTel;
-	String userAddress;
-	int accountId;
+	private int userId;
+	private String userName;
+	private String userSSNFront;
+	private String userSSNBack;
+	private String userTel;
+	private String userAddress;
+	private int accountId;
 	
 	public int getUserId() {
 		return userId;

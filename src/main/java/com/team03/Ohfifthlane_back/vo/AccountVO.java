@@ -1,10 +1,11 @@
 package com.team03.Ohfifthlane_back.vo;
 
 public class AccountVO {
-	int accountId;
-	String accountEmail;
-	String accountPassword;
-	int accountLevel; // 회원 등급
+	
+	private int accountId;
+	private String accountEmail;
+	private String accountPassword;
+	private int accountLevel; // 회원 등급
 	
 	public int getAccountId() {
 		return accountId;
