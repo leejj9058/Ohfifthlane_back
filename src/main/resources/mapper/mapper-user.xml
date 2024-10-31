@@ -54,5 +54,15 @@
 		FROM ohfifthlane.account_tbl
 		WHERE account_email = #{accountEmail}
 	</select>
+	
+	<select id="getNearRPZList" 
+	parameterType="com.team03.Ohfifthlane_back.vo.UserLocationVO" 
+	resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+	
+		SELECT * FROM ohfifthlane.rpz_tbl
+		WHERE ST_DWithin(rpz_coord, ST_MakePoint(#{userLon}, #{userLat})::geography, 500)
+	
+	</select>
+
 
 </mapper>
