@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper-board">
+
+   <select id="getNotice" resultType="com.team03.Ohfifthlane_back.vo.NoticeVO">
+      select * from ohfifthlane.notice_tbl order by notice_date asc 
+   
+   </select>
+
+   <select id="getNoticeDetail" parameterType="com.team03.Ohfifthlane_back.vo.NoticeVO" resultType="com.team03.Ohfifthlane_back.vo.NoticeVO">
+   
+      select * from ohfifthlane.notice_tbl where notice_id = #{noticeId}
+   
+   
+   </select>
+</mapper>
