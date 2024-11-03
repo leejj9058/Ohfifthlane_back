@@ -6,71 +6,70 @@ import org.locationtech.jts.geom.Point;
 
 public class RPZVO {
 
-	private int rpzId;                
-    private String rpzNum;             // VARCHAR(30) => String
-    private BigDecimal rpzLat;         // NUMERIC => BigDecimal
-    private BigDecimal rpzLon;         // NUMERIC => BigDecimal
-    private String rpzAddress;         // VARCHAR(200) => String
-    private String rpzManageTel;       // VARCHAR(30) => String
-    private String rpzManageName;      // VARCHAR(50) => String
-    private int rpzFee;            // INTEGER => Integer
-    private Point rpzCoord;            // GEOMETRY(Point, 4326) => Point (JTS 라이브러리 사용)
+	private int RPZId;                
+    private String RPZNum;             // VARCHAR(30) => String
+    private BigDecimal RPZLat;         // NUMERIC => BigDecimal
+    private BigDecimal RPZLon;         // NUMERIC => BigDecimal
+    private String RPZAddress;         // VARCHAR(200) => String
+    private String RPZManageTel;       // VARCHAR(30) => String
+    private String RPZManageName;      // VARCHAR(50) => String
+    private int RPZFee;            // INTEGER => Integer
+    private Point RPZCoord;            // GEOMETRY(Point, 4326) => Point (JTS 라이브러리 사용)
     private Long userId;
     
-    
-	public int getRpzId() {
-		return rpzId;
+	public int getRPZId() {
+		return RPZId;
 	}
-	public void setRpzId(int rpzId) {
-		this.rpzId = rpzId;
+	public void setRPZId(int rPZId) {
+		RPZId = rPZId;
 	}
-	public String getRpzNum() {
-		return rpzNum;
+	public String getRPZNum() {
+		return RPZNum;
 	}
-	public void setRpzNum(String rpzNum) {
-		this.rpzNum = rpzNum;
+	public void setRPZNum(String rPZNum) {
+		RPZNum = rPZNum;
 	}
-	public BigDecimal getRpzLat() {
-		return rpzLat;
+	public BigDecimal getRPZLat() {
+		return RPZLat;
 	}
-	public void setRpzLat(BigDecimal rpzLat) {
-		this.rpzLat = rpzLat;
+	public void setRPZLat(BigDecimal rPZLat) {
+		RPZLat = rPZLat;
 	}
-	public BigDecimal getRpzLon() {
-		return rpzLon;
+	public BigDecimal getRPZLon() {
+		return RPZLon;
 	}
-	public void setRpzLon(BigDecimal rpzLon) {
-		this.rpzLon = rpzLon;
+	public void setRPZLon(BigDecimal rPZLon) {
+		RPZLon = rPZLon;
 	}
-	public String getRpzAddress() {
-		return rpzAddress;
+	public String getRPZAddress() {
+		return RPZAddress;
 	}
-	public void setRpzAddress(String rpzAddress) {
-		this.rpzAddress = rpzAddress;
+	public void setRPZAddress(String rPZAddress) {
+		RPZAddress = rPZAddress;
 	}
-	public String getRpzManageTel() {
-		return rpzManageTel;
+	public String getRPZManageTel() {
+		return RPZManageTel;
 	}
-	public void setRpzManageTel(String rpzManageTel) {
-		this.rpzManageTel = rpzManageTel;
+	public void setRPZManageTel(String rPZManageTel) {
+		RPZManageTel = rPZManageTel;
 	}
-	public String getRpzManageName() {
-		return rpzManageName;
+	public String getRPZManageName() {
+		return RPZManageName;
 	}
-	public void setRpzManageName(String rpzManageName) {
-		this.rpzManageName = rpzManageName;
+	public void setRPZManageName(String rPZManageName) {
+		RPZManageName = rPZManageName;
 	}
-	public int getRpzFee() {
-		return rpzFee;
+	public int getRPZFee() {
+		return RPZFee;
 	}
-	public void setRpzFee(int rpzFee) {
-		this.rpzFee = rpzFee;
+	public void setRPZFee(int rPZFee) {
+		RPZFee = rPZFee;
 	}
-	public Point getRpzCoord() {
-		return rpzCoord;
+	public Point getRPZCoord() {
+		return RPZCoord;
 	}
-	public void setRpzCoord(Point rpzCoord) {
-		this.rpzCoord = rpzCoord;
+	public void setRPZCoord(Point rPZCoord) {
+		RPZCoord = rPZCoord;
 	}
 	public Long getUserId() {
 		return userId;
@@ -78,14 +77,11 @@ public class RPZVO {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	
 	@Override
 	public String toString() {
-		return "RPZVO [rpzId=" + rpzId + ", rpzNum=" + rpzNum + ", rpzLat=" + rpzLat + ", rpzLon=" + rpzLon
-				+ ", rpzAddress=" + rpzAddress + ", rpzManageTel=" + rpzManageTel + ", rpzManageName=" + rpzManageName
-				+ ", rpzFee=" + rpzFee + ", rpzCoord=" + rpzCoord + ", userId=" + userId + "]";
+		return "RPZVO [RPZId=" + RPZId + ", RPZNum=" + RPZNum + ", RPZLat=" + RPZLat + ", RPZLon=" + RPZLon
+				+ ", RPZAddress=" + RPZAddress + ", RPZManageTel=" + RPZManageTel + ", RPZManageName=" + RPZManageName
+				+ ", RPZFee=" + RPZFee + ", RPZCoord=" + RPZCoord + ", userId=" + userId + "]";
 	}
-    
-    
 	
 }

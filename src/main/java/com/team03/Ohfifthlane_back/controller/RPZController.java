@@ -1,6 +1,5 @@
 package com.team03.Ohfifthlane_back.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +30,6 @@ public class RPZController {
 		
 		return ResponseEntity.ok(nearRPZList);
 	}
+	
+	
 }
