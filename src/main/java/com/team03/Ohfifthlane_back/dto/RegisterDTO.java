@@ -1,4 +1,7 @@
-package com.team03.Ohfifthlane_back.vo;
+package com.team03.Ohfifthlane_back.dto;
+
+import com.team03.Ohfifthlane_back.vo.AccountVO;
+import com.team03.Ohfifthlane_back.vo.UserVO;
 
 public class RegisterDTO {
 

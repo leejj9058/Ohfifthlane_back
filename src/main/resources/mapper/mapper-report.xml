@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper-report">
+
+	<!-- 신고내용 db에 저장 -->
+
+	<insert id="createReport" parameterType="com.team03.Ohfifthlane_back.vo.ReportVO">
+	
+		insert into ohfifthlane.report_tbl 
+		(user_id, rpz_id, report_image, photo_time, report_time, report_status, report_lat, report_lon, report_car_number)
+		values (#{userId}, #{rpzId}, #{reportImage}, #{photoTime}, #{reportTime}, #{reportStatus}, #{reportLat}, #{reportLon}, #{reportCarNumber})
+	
+	</insert>
+
+</mapper>

@@ -42,7 +42,7 @@ public class ReservationController {
             RPZVO RPZOne = iterator.next();
  
 			// 주차장별 예약 정보 저장할 리스트 생성 및 예약 리스트 추가하기
-			List<ReservationVO> reservationList = dao.getReservationListByRPZId(RPZOne.getRPZId());
+			List<ReservationVO> reservationList = dao.getReservationListByRPZId(RPZOne.getRpzId());
 			
 			for(ReservationVO reserv : reservationList) {
 				// 시작시각 비교 (예약 시작 시각이 기존 예약시간 사이에 있는지)

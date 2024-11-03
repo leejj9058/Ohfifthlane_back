@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team03.Ohfifthlane_back.dao.AccountDAO;
 import com.team03.Ohfifthlane_back.dao.UserDAO;
+import com.team03.Ohfifthlane_back.dto.RegisterDTO;
 import com.team03.Ohfifthlane_back.vo.AccountVO;
-import com.team03.Ohfifthlane_back.vo.RegisterDTO;
 import com.team03.Ohfifthlane_back.vo.UserVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,20 +32,28 @@ public class MainController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody AccountVO vo, HttpSession session) {
 		AccountVO user = dao.userLogin(vo);
-		System.out.println(vo);
-		System.out.println(user);
 		
 		if (user == null) {
 			return ResponseEntity.badRequest().body("회원 정보가 없습니다."); // 에러메세지
 		}
 
 		session.setAttribute("accountId", user.getAccountId());
+		
+		// userId 가져와서 세션저장
+		UserVO userInfo = dao.getUserIdByAccountId(user.getAccountId());
+		
+		if (userInfo == null) {
+			return ResponseEntity.badRequest().body("사용자 정보가 없습니다.");
+		}
+		
+		session.setAttribute("userId", userInfo.getUserId());
+		System.out.println("userId = " + userInfo.getUserId());
+		
 		return ResponseEntity.ok(user);
 	}
 	
 	@GetMapping("/getAccountId")
 	public ResponseEntity<?> getAccountId(HttpSession session) {
-		System.out.println('ㅁ');
 		int accountId = (int) session.getAttribute("accountId");
 		return ResponseEntity.ok(accountId);
 	}
