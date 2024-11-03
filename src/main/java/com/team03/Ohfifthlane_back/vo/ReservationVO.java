@@ -10,7 +10,7 @@ public class ReservationVO {
 	private LocalDateTime reservationEndTime;
 	private String reservationDay;
 	private int reservationTotalFee;
-	private int rpzId;
+	private int RPZId;
 	
 	public int getReservationId() {
 		return reservationId;
@@ -48,18 +48,18 @@ public class ReservationVO {
 	public void setReservationTotalFee(int reservationTotalFee) {
 		this.reservationTotalFee = reservationTotalFee;
 	}
-	public int getRpzId() {
-		return rpzId;
+	public int getRPZId() {
+		return RPZId;
 	}
-	public void setRpzId(int rpzId) {
-		this.rpzId = rpzId;
+	public void setRPZId(int RPZId) {
+		this.RPZId = RPZId;
 	}
 	
 	@Override
 	public String toString() {
 		return "ReservationVO [reservationId=" + reservationId + ", userId=" + userId + ", reservationStartTime="
 				+ reservationStartTime + ", reservationEndTime=" + reservationEndTime + ", reservationDay="
-				+ reservationDay + ", reservationTotalFee=" + reservationTotalFee + ", rpzId=" + rpzId + "]";
+				+ reservationDay + ", reservationTotalFee=" + reservationTotalFee + ", RPZId=" + RPZId + "]";
 	}
 	
 	
