@@ -14,7 +14,15 @@ public class ReportVO {
 	private int reportStatus;
 	private BigDecimal reportLat;
 	private BigDecimal reportLon;
+	private String reportCarNumber;
 	
+	
+	public String getReportCarNumber() {
+		return reportCarNumber;
+	}
+	public void setReportCarNumber(String reportCarNumber) {
+		this.reportCarNumber = reportCarNumber;
+	}
 	public int getReportId() {
 		return reportId;
 	}
@@ -74,8 +82,10 @@ public class ReportVO {
 	public String toString() {
 		return "ReportVO [reportId=" + reportId + ", userId=" + userId + ", rpzId=" + rpzId + ", reportImage="
 				+ reportImage + ", photoTime=" + photoTime + ", reportTime=" + reportTime + ", reportStatus="
-				+ reportStatus + ", reportLat=" + reportLat + ", reportLon=" + reportLon + "]";
+				+ reportStatus + ", reportLat=" + reportLat + ", reportLon=" + reportLon + ", reportCarNumber="
+				+ reportCarNumber + "]";
 	}
+	
 	
 	
 	

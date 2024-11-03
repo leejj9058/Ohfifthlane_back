@@ -20,6 +20,11 @@ public class RPZDAO {
 		return session.selectList("getNearRPZList", ulVO);
 	}
 
+	public RPZVO getByRPZNum(String rpzNum) {
+		
+		return null;
+	}
+
 	
 	
 	
