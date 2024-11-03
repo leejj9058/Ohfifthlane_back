@@ -13,5 +13,18 @@
 
 	</select>
 	
+	<!-- 입력한 주자구획번호가 db에 있는지 확인 -->
+	<select id="existsByRPZNum" parameterType="String" resultType="Boolean">
+	
+		select count(*) > 0 from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
+	
+	</select>
+	
+	<!-- 입력한 주자구획번호로 주차id가져오기 -->
+	<select id="getRPZIdByRPZNum" parameterType="String" resultType="int">
+	
+		select rpz_id from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
+	
+	</select>
 
 </mapper>

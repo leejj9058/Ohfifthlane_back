@@ -32,4 +32,9 @@ public class UserDAO {
 		
 		return session.selectOne("checkEmail", accountEmail);
 	}
+
+	public UserVO getUserIdByAccountId(int accountId) {
+		
+		return session.selectOne("getUserIdByAccountId", accountId);
+	}
 }

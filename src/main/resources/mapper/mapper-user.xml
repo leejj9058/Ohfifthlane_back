@@ -55,5 +55,9 @@
 		WHERE account_email = #{accountEmail}
 	</select>
 	
+	<!-- accountId로 회원정보-->
+	<select id="getUserIdByAccountId" parameterType="int" resultType="com.team03.Ohfifthlane_back.vo.UserVO">
+		select * from ohfifthlane.user_tbl where account_id = #{accountId}
+	</select>
 
 </mapper>

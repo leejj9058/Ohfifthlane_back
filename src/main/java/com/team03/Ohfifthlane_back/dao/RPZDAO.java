@@ -20,9 +20,17 @@ public class RPZDAO {
 		return session.selectList("getNearRPZList", ulVO);
 	}
 
-	public RPZVO getByRPZNum(String rpzNum) {
+
+	public Boolean existsByRPZNum(String rpzNum) {
 		
-		return null;
+		return session.selectOne("existsByRPZNum", rpzNum);
+	}
+
+
+	//주차면 id 가져오기
+	public int getRPZIdByRPZNum(String rpzNum) {
+		
+		return session.selectOne("getRPZIdByRPZNum", rpzNum);
 	}
 
 	
