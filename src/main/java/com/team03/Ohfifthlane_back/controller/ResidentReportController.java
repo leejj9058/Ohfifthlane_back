@@ -63,7 +63,7 @@ public class ResidentReportController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 저장 중 오류 발생: " + e.getMessage());
 		}
 		
-		String imageUrl = "http://172.168.10.73:8080/upload/" + fileName;
+		String imageUrl = "http://192.168.0.43:8080/upload/" + fileName;
 
 
 		// 저장된 파일 경로를 vo에 설정
