@@ -8,8 +8,10 @@
 		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
 
 		SELECT * FROM ohfifthlane.rpz_tbl
-		WHERE ST_DWithin(rpz_coord,
-		ST_MakePoint(#{userLon}, #{userLat})::geography, 500)
+		WHERE
+		ST_DWithin(rpz_coord,
+		ST_MakePoint(#{userLon}, #{userLat})::geography,
+		500)
 
 	</select>
 	
@@ -26,5 +28,35 @@
 		select rpz_id from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
 	
 	</select>
+
+	<!-- 주차구역 아이디로 예약 가져오기 -->
+	<select id="getReservationListByRPZId" parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.ReservationVO">
+
+		SELECT * FROM ohfifthlane.reservation_tbl
+		WHERE rpz_id = #{rpzId}
+
+	</select>
+
+	<!-- 해당 주차구역 예약 생성하기 -->
+	<insert id="putReservationByRPZId"
+		parameterType="com.team03.Ohfifthlane_back.vo.ReservationVO">
+
+		INSERT INTO reservation_tbl (user_id,
+		reservation_start_time,
+		reservation_end_time,
+		reservation_day,
+		reservation_total_fee,
+		rpz_id
+		)
+		VALUES (#{userId},
+		#{reservation_start_time},
+		#{reservation_end_time},
+		#{reservation_day},
+		#{reservation_total_fee},
+		#{rpz_id}
+		)
+		
+	</insert>
 
 </mapper>
