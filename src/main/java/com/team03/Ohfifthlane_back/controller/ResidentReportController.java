@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,6 @@ import com.team03.Ohfifthlane_back.vo.RPZVO;
 import com.team03.Ohfifthlane_back.vo.ReportVO;
 
 import jakarta.servlet.http.HttpSession;
-
 
 @RestController
 @RequestMapping("/api")
@@ -63,11 +63,12 @@ public class ResidentReportController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 저장 중 오류 발생: " + e.getMessage());
 		}
 		
-		String imageUrl = "http://172.168.10.73:8080/upload/" + fileName;
+//		String imageUrl = "http://172.168.10.73:8080/uploads/" + fileName;
 
+		
 
 		// 저장된 파일 경로를 vo에 설정
-		rvo.setReportImage(imageUrl); // 이미지 경로 설정
+		rvo.setReportImage(fileName); // 이미지 경로 설정
 
 		return ResponseEntity.ok(rvo); // 업로드된 이미지 경로를 반환
 	}
