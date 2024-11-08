@@ -2,7 +2,6 @@ package com.team03.Ohfifthlane_back.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,7 +25,6 @@ import com.team03.Ohfifthlane_back.vo.RPZVO;
 import com.team03.Ohfifthlane_back.vo.ReportVO;
 
 import jakarta.servlet.http.HttpSession;
-
 
 @RestController
 @RequestMapping("/api")
@@ -63,11 +61,14 @@ public class ResidentReportController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 저장 중 오류 발생: " + e.getMessage());
 		}
 		
-		String imageUrl = "http://192.168.0.43:8080/upload/" + fileName;
 
+//		String imageUrl = "http://172.168.10.73:8080/uploads/" + fileName;
+
+
+		
 
 		// 저장된 파일 경로를 vo에 설정
-		rvo.setReportImage(imageUrl); // 이미지 경로 설정
+		rvo.setReportImage(fileName); // 이미지 경로 설정
 
 		return ResponseEntity.ok(rvo); // 업로드된 이미지 경로를 반환
 	}
