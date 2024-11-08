@@ -15,12 +15,6 @@ public class ReservationDAO {
 	@Autowired
 	SqlSession session;
 
-	// 예약 리스트 가져오기
-	public List<ReservationVO> getReservationList(ReservationVO vo) {
-		List<ReservationVO> list = session.selectList("getReservationList", vo);
-		return list;
-	}
-
 	// 현재 위치 반경 500m내 주차장 가져오기
 	public List<RPZVO> getNearRPZList(UserLocationVO ulVO) {
 
@@ -28,8 +22,8 @@ public class ReservationDAO {
 	}
 
 	// 주차구역 아이디로 예약 가져오기
-	public List<ReservationVO> getReservationListByRPZId(int RPZId) {
-		List<ReservationVO> list = session.selectList("getReservationListByRPZId", RPZId);
+	public List<ReservationVO> getReservationListByRPZId(int rpzId) {
+		List<ReservationVO> list = session.selectList("getReservationListByRPZId", rpzId);
 		return list;
 	}
 	
