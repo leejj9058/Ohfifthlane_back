@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper-RPZ">
+
+	<!-- 반경500미터 주차장만 가져오기 -->
+	<select id="getNearRPZList"
+		parameterType="com.team03.Ohfifthlane_back.vo.UserLocationVO"
+		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+
+		SELECT * FROM ohfifthlane.rpz_tbl
+		WHERE
+		ST_DWithin(rpz_coord,
+		ST_MakePoint(#{userLon}, #{userLat})::geography,
+		500)
+
+	</select>
+	
+	<!-- 입력한 주자구획번호가 db에 있는지 확인 -->
+	<select id="existsByRPZNum" parameterType="String" resultType="Boolean">
+	
+		select count(*) > 0 from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
+	
+	</select>
+	
+	<!-- 입력한 주자구획번호로 주차id가져오기 -->
+	<select id="getRPZIdByRPZNum" parameterType="String" resultType="int">
+	
+		select rpz_id from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
+	
+	</select>
+
+	<!-- 주차구역 아이디로 예약 가져오기 -->
+	<select id="getReservationListByRPZId" parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.ReservationVO">
+
+		SELECT * FROM ohfifthlane.reservation_tbl
+		WHERE rpz_id = #{rpzId}
+
+	</select>
+
+	<!-- 해당 주차구역 예약 생성하기 -->
+	<insert id="putReservationByRPZId"
+		parameterType="com.team03.Ohfifthlane_back.vo.ReservationVO">
+
+		INSERT INTO reservation_tbl (user_id,
+		reservation_start_time,
+		reservation_end_time,
+		reservation_day,
+		reservation_total_fee,
+		rpz_id
+		)
+		VALUES (#{userId},
+		#{reservation_start_time},
+		#{reservation_end_time},
+		#{reservation_day},
+		#{reservation_total_fee},
+		#{rpz_id}
+		)
+		
+	</insert>
+
+</mapper>
