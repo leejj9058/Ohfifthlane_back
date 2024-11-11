@@ -1,5 +1,7 @@
 package com.team03.Ohfifthlane_back.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,16 @@ public class ReportDAO {
 	public void createReport(ReportVO reportVO) {
 		
 		session.insert("createReport", reportVO);
+	}
+
+	public List<ReportVO> getReportList() {
+
+		return session.selectList("getReportList");
+	}
+
+	public ReportVO getReportByReportId(int reportId) {
+		
+		return session.selectOne("getReportByReportId", reportId);
 	}
 	
 }
