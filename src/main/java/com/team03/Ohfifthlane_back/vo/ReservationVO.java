@@ -1,14 +1,12 @@
 package com.team03.Ohfifthlane_back.vo;
 
-import java.time.LocalDateTime;
-
 public class ReservationVO {
 
 	private int reservationId;
-	private int userId;
-	private LocalDateTime reservationStartTime;
-	private LocalDateTime reservationEndTime;
-	private String reservationDay;
+	private int userId;	
+	private String reservationStartTime;
+	private String reservationEndTime;
+	private int reservationDay;
 	private int reservationTotalFee;
 	private int RPZId;
 	
@@ -24,22 +22,22 @@ public class ReservationVO {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public LocalDateTime getReservationStartTime() {
+	public String getReservationStartTime() {
 		return reservationStartTime;
 	}
-	public void setReservationStartTime(LocalDateTime reservationStartTime) {
+	public void setReservationStartTime(String reservationStartTime) {
 		this.reservationStartTime = reservationStartTime;
 	}
-	public LocalDateTime getReservationEndTime() {
+	public String getReservationEndTime() {
 		return reservationEndTime;
 	}
-	public void setReservationEndTime(LocalDateTime reservationEndTime) {
+	public void setReservationEndTime(String reservationEndTime) {
 		this.reservationEndTime = reservationEndTime;
 	}
-	public String getReservationDay() {
+	public int getReservationDay() {
 		return reservationDay;
 	}
-	public void setReservationDay(String reservationDay) {
+	public void setReservationDay(int reservationDay) {
 		this.reservationDay = reservationDay;
 	}
 	public int getReservationTotalFee() {
@@ -51,18 +49,14 @@ public class ReservationVO {
 	public int getRPZId() {
 		return RPZId;
 	}
-	public void setRPZId(int RPZId) {
-		this.RPZId = RPZId;
+	public void setRPZId(int rPZId) {
+		RPZId = rPZId;
 	}
-	
 	@Override
 	public String toString() {
 		return "ReservationVO [reservationId=" + reservationId + ", userId=" + userId + ", reservationStartTime="
 				+ reservationStartTime + ", reservationEndTime=" + reservationEndTime + ", reservationDay="
 				+ reservationDay + ", reservationTotalFee=" + reservationTotalFee + ", RPZId=" + RPZId + "]";
 	}
-	
-	
-	
 	
 }
