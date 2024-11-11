@@ -1,5 +1,7 @@
 package com.team03.Ohfifthlane_back.dao;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,6 +32,11 @@ public class ReservationDAO {
 	// 해당 주차구역 예약 생성하기
 	public void putReservationByRPZId(ReservationVO vo) {
 		session.insert("putReservationByRPZId", vo);
+	}
+	
+	public LocalTime changeLocalTime(String timeString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return LocalTime.parse(timeString, formatter);
 	}
 	
 }
