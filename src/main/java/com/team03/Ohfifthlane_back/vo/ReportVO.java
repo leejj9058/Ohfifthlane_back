@@ -16,7 +16,39 @@ public class ReportVO {
 	private BigDecimal reportLon;
 	private String reportCarNumber;
 	
+	private String reportAddress;
 	
+	
+	// dto 너무 귀찮아져서 그냥 여기에 추가
+	private String userName;
+	private String rpzNum;
+	private String userTel;
+	
+	public String getUserTel() {
+		return userTel;
+	}
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getRpzNum() {
+		return rpzNum;
+	}
+	public void setRpzNum(String rpzNum) {
+		this.rpzNum = rpzNum;
+	}
+	public String getReportAddress() {
+		return reportAddress;
+	}
+	public void setReportAddress(String reportAddress) {
+		this.reportAddress = reportAddress;
+	}
 	public String getReportCarNumber() {
 		return reportCarNumber;
 	}
@@ -77,16 +109,13 @@ public class ReportVO {
 	public void setReportLon(BigDecimal reportLon) {
 		this.reportLon = reportLon;
 	}
-	
 	@Override
 	public String toString() {
 		return "ReportVO [reportId=" + reportId + ", userId=" + userId + ", rpzId=" + rpzId + ", reportImage="
 				+ reportImage + ", photoTime=" + photoTime + ", reportTime=" + reportTime + ", reportStatus="
 				+ reportStatus + ", reportLat=" + reportLat + ", reportLon=" + reportLon + ", reportCarNumber="
-				+ reportCarNumber + "]";
+				+ reportCarNumber + ", reportAddress=" + reportAddress + ", userName=" + userName + ", rpzNum=" + rpzNum
+				+ ", userTel=" + userTel + "]";
 	}
-	
-	
-	
 	
 }

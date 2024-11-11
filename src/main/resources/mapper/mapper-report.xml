@@ -4,12 +4,61 @@
 
 	<!-- 신고내용 db에 저장 -->
 
-	<insert id="createReport" parameterType="com.team03.Ohfifthlane_back.vo.ReportVO">
-	
-		insert into ohfifthlane.report_tbl 
-		(user_id, rpz_id, report_image, photo_time, report_time, report_status, report_lat, report_lon, report_car_number)
-		values (#{userId}, #{rpzId}, #{reportImage}, #{photoTime}, #{reportTime}, #{reportStatus}, #{reportLat}, #{reportLon}, #{reportCarNumber})
-	
+	<insert id="createReport"
+		parameterType="com.team03.Ohfifthlane_back.vo.ReportVO">
+
+		insert into ohfifthlane.report_tbl
+		(user_id, rpz_id,
+		report_image, photo_time, report_time, report_status,
+		report_lat,
+		report_lon, report_car_number, report_address)
+		values
+		(#{userId},
+		#{rpzId}, #{reportImage}, #{photoTime}, #{reportTime},
+		#{reportStatus}, #{reportLat}, #{reportLon}, #{reportCarNumber},
+		#{reportAddress})
+
 	</insert>
+
+	<!-- 신고리스트 가져오기 -->
+
+	<select id="getReportList"
+		resultType="com.team03.Ohfifthlane_back.vo.ReportVO">
+
+		select * from ohfifthlane.report_tbl
+
+	</select>
+
+	<!-- 신고 상세정보 가져오기 -->
+
+	<select id="getReportByReportId" parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.ReportVO">
+
+		SELECT
+		rtbl.report_id,
+		rtbl.report_image,
+		rtbl.report_time,
+		rtbl.report_status,
+		rtbl.report_address,
+		rtbl.report_car_number,
+		utbl.user_name,
+		utbl.user_tel,
+		rpztbl.rpz_num
+		FROM ohfifthlane.report_tbl rtbl
+		join ohfifthlane.user_tbl utbl on rtbl.user_id = utbl.user_id
+		join ohfifthlane.rpz_tbl rpztbl on rtbl.rpz_id = rpztbl.rpz_id where rtbl.report_id = #{reportId};
+
+	</select>
+	
+	
+	<!-- 신고상태 변경하기 -->
+	<update id="updateReportStatus" parameterType="com.team03.Ohfifthlane_back.vo.ReportVO">
+		
+		update ohfifthlane.report_tbl
+		set report_status = #{reportStatus}
+		where report_id = #{reportId}
+		
+	</update>
+
 
 </mapper>
