@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -209,6 +210,21 @@ public class ResidentReportController {
 		System.out.println("report = " + report);
 		
 		return ResponseEntity.ok(report);
+	}
+	
+	
+	//신고 상태 변경
+	@PutMapping("/updateReportStatus/{reportId}/{reportStatus}")
+	public ResponseEntity<?> updateReportStatus(@PathVariable("reportId") int reportId,
+			@PathVariable("reportStatus") int reportStatus) {
+		
+		ReportVO reportVO = new ReportVO();
+		reportVO.setReportId(reportId);
+		reportVO.setReportStatus(reportStatus);
+		
+		reportDAO.updateReportStatus(reportVO);
+		
+		return ResponseEntity.ok("상태가 변경되었습니다.");
 	}
 
 }

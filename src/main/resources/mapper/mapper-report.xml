@@ -49,5 +49,16 @@
 		join ohfifthlane.rpz_tbl rpztbl on rtbl.rpz_id = rpztbl.rpz_id where rtbl.report_id = #{reportId};
 
 	</select>
+	
+	
+	<!-- 신고상태 변경하기 -->
+	<update id="updateReportStatus" parameterType="com.team03.Ohfifthlane_back.vo.ReportVO">
+		
+		update ohfifthlane.report_tbl
+		set report_status = #{reportStatus}
+		where report_id = #{reportId}
+		
+	</update>
+
 
 </mapper>

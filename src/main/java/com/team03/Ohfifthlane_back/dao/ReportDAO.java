@@ -28,5 +28,12 @@ public class ReportDAO {
 		
 		return session.selectOne("getReportByReportId", reportId);
 	}
+
+	public void updateReportStatus(ReportVO reportVO) {
+		
+		session.update("updateReportStatus", reportVO);
+	}
+
+	
 	
 }
