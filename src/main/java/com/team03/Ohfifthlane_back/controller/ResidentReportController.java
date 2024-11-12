@@ -117,7 +117,7 @@ public class ResidentReportController {
 		reportVO.setPhotoTime(LocalDateTime.now());
 		reportVO.setReportTime(LocalDateTime.now());
 		reportVO.setReportStatus(0); // 0을 default 대기중으로
-		reportVO.setReportLat(reportVO.getReportLat()); // 더미 위치
+		reportVO.setReportLat(reportVO.getReportLat());
 		reportVO.setReportLon(reportVO.getReportLon());
 		reportVO.setReportCarNumber(reportVO.getReportCarNumber());
 		reportVO.setReportImage(reportVO.getReportImage());
