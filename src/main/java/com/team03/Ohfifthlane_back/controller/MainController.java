@@ -47,22 +47,14 @@ public class MainController {
 		}
 		
 		session.setAttribute("userId", userInfo.getUserId());
-		System.out.println("userId = " + userInfo.getUserId());
 		
 		return ResponseEntity.ok(user);
-	}
-	
-	@GetMapping("/getAccountId")
-	public ResponseEntity<?> getAccountId(HttpSession session) {
-		int accountId = (int) session.getAttribute("accountId");
-		return ResponseEntity.ok(accountId);
 	}
 	
 	@GetMapping("/goToLogout")
 	public ResponseEntity<?> goToLogout(HttpSession session) {
 		System.out.println("로그아웃");
 		session.setAttribute("accountId", 0);
-		System.out.println(session.getAttribute("accountId"));
 		int result = (int) session.getAttribute("accountId");
 		return ResponseEntity.ok(result);
 	}
@@ -72,8 +64,6 @@ public class MainController {
 	public ResponseEntity<?> findId(@RequestBody UserVO uvo) {
 
 		String accountEmail = dao.userFindId(uvo);
-
-		System.out.println("AccountVO avo = " + accountEmail);
 
 		if (accountEmail == null) {
 			return ResponseEntity.badRequest().body("등록된 회원 정보가 없습니다."); // 에러메세지
@@ -112,9 +102,6 @@ public class MainController {
 			
 			dao.createUser(uvo);
 			
-			System.out.println("avo = " + avo);
-			System.out.println("uvo = " + uvo);
-			
 			return ResponseEntity.ok("회원가입 성공");
 			
 		} catch (Exception e) {
@@ -124,13 +111,11 @@ public class MainController {
 		
 	}
 	
+	//이메일 중복확인
 	@PostMapping("/checkEmail")
 	public ResponseEntity<?> checkEmail(@RequestBody Map<String, String> requestBody) {
 	    String accountEmail = requestBody.get("accountEmail");
 	    int count = dao.checkEmail(accountEmail);
-
-	    System.out.println("email : " + accountEmail);
-	    System.out.println("count : " + count);
 
 	    // count가 0이면 사용 가능, 1이면 이미 존재
 	    return ResponseEntity.ok(count == 0);
