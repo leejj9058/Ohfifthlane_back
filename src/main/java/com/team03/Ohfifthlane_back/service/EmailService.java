@@ -31,7 +31,7 @@ public class EmailService {
         try {
             message.setFrom(senderEmail);   // 보내는 이메일
             message.setRecipients(MimeMessage.RecipientType.TO, mail); // 수신자 이메일
-            message.setSubject("[WalkingMate] 회원가입을 위한 이메일 인증");  // 제목 설정
+            message.setSubject("[오차로] 회원가입을 위한 이메일 인증");  // 제목 설정
 
             String body = "<h1>안녕하세요.</h1>";
             body += "<h1>오차로 입니다.</h1>";
