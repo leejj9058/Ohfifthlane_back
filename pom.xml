@@ -73,7 +73,10 @@
 			<artifactId>jts-core</artifactId>
 			<version>1.19.0</version> <!-- 최신 버전 확인 후 변경 가능 -->
 		</dependency>
-
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

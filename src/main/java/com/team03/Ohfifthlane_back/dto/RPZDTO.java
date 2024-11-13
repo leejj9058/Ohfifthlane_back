@@ -4,8 +4,8 @@ import com.team03.Ohfifthlane_back.vo.ReservationVO;
 import com.team03.Ohfifthlane_back.vo.UserLocationVO;
 
 public class RPZDTO {
-	UserLocationVO userLocationVo;
-	ReservationVO reservationVo;
+	private UserLocationVO userLocationVo;
+	private ReservationVO reservationVo; //null값이 들어와도 매핑가능
 
 	public UserLocationVO getUserLocationVo() {
 		return userLocationVo;
