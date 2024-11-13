@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.team03.Ohfifthlane_back.dao.AccountDAO;
 import com.team03.Ohfifthlane_back.dao.UserDAO;
 import com.team03.Ohfifthlane_back.dto.RegisterDTO;
-import com.team03.Ohfifthlane_back.service.EmailService;
 import com.team03.Ohfifthlane_back.vo.AccountVO;
 import com.team03.Ohfifthlane_back.vo.UserVO;
 
@@ -30,9 +29,6 @@ public class MainController {
 	@Autowired
 	AccountDAO adao;
 
-	@Autowired
-    private EmailService emailService;
-	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody AccountVO vo, HttpSession session) {
 		AccountVO user = dao.userLogin(vo);
@@ -65,9 +61,8 @@ public class MainController {
 	@GetMapping("/goToLogout")
 	public ResponseEntity<?> goToLogout(HttpSession session) {
 		System.out.println("로그아웃");
-		session.setAttribute("accountId", 0);
-		int result = (int) session.getAttribute("accountId");
-		return ResponseEntity.ok(result);
+		session.invalidate();
+		return ResponseEntity.ok("로그아웃 되었습니다.");
 	}
 
 	// 아이디 찾기 대충
@@ -75,6 +70,8 @@ public class MainController {
 	public ResponseEntity<?> findId(@RequestBody UserVO uvo) {
 
 		String accountEmail = dao.userFindId(uvo);
+
+		System.out.println("AccountVO avo = " + accountEmail);
 
 		if (accountEmail == null) {
 			return ResponseEntity.badRequest().body("등록된 회원 정보가 없습니다."); // 에러메세지
@@ -138,13 +135,7 @@ public class MainController {
 	    return ResponseEntity.ok(count == 0);
 	}
 
-	@PostMapping("/sendEmail")
-    public int mailConfirm(@RequestBody AccountVO vo) {
-        int num = emailService.sendEmail(vo.getAccountEmail());
-
-        return num;
-    }
-
+	
 	
 
 }
