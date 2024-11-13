@@ -47,8 +47,15 @@ public class MainController {
 		}
 		
 		session.setAttribute("userId", userInfo.getUserId());
+		System.out.println("userId = " + userInfo.getUserId());
 		
 		return ResponseEntity.ok(user);
+	}
+	
+	@GetMapping("/getAccountId")
+	public ResponseEntity<?> getAccountId(HttpSession session) {
+		int accountId = (int) session.getAttribute("accountId");
+		return ResponseEntity.ok(accountId);
 	}
 	
 	@GetMapping("/goToLogout")
@@ -102,6 +109,9 @@ public class MainController {
 			
 			dao.createUser(uvo);
 			
+			System.out.println("avo = " + avo);
+			System.out.println("uvo = " + uvo);
+			
 			return ResponseEntity.ok("회원가입 성공");
 			
 		} catch (Exception e) {
@@ -116,6 +126,9 @@ public class MainController {
 	public ResponseEntity<?> checkEmail(@RequestBody Map<String, String> requestBody) {
 	    String accountEmail = requestBody.get("accountEmail");
 	    int count = dao.checkEmail(accountEmail);
+
+	    System.out.println("email : " + accountEmail);
+	    System.out.println("count : " + count);
 
 	    // count가 0이면 사용 가능, 1이면 이미 존재
 	    return ResponseEntity.ok(count == 0);
