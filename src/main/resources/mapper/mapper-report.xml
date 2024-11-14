@@ -39,6 +39,8 @@
 		rtbl.report_image,
 		rtbl.report_time,
 		rtbl.report_status,
+		rtbl.report_lat,
+		rtbl.report_lon,
 		rtbl.report_address,
 		rtbl.report_car_number,
 		utbl.user_name,
