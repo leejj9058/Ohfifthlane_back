@@ -19,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.team03.Ohfifthlane_back.vo.ChargingStationVO;
 
 @Component
 public class SearchDAO {
@@ -81,6 +82,11 @@ public class SearchDAO {
 		}
 
 		return parkings;
+	}
+
+	public List<ChargingStationVO> getChargingStationList() {
+		
+		return session.selectList("getChargingStationList");
 	}
 	
 	
