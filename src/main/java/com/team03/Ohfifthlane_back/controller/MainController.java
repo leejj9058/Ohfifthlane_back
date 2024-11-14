@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.team03.Ohfifthlane_back.dao.AccountDAO;
 import com.team03.Ohfifthlane_back.dao.UserDAO;
 import com.team03.Ohfifthlane_back.dto.RegisterDTO;
+import com.team03.Ohfifthlane_back.service.EmailService;
 import com.team03.Ohfifthlane_back.vo.AccountVO;
 import com.team03.Ohfifthlane_back.vo.UserVO;
 
@@ -28,6 +29,9 @@ public class MainController {
 	
 	@Autowired
 	AccountDAO adao;
+	
+	@Autowired
+    private EmailService emailService;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody AccountVO vo, HttpSession session) {
@@ -134,6 +138,13 @@ public class MainController {
 	    // count가 0이면 사용 가능, 1이면 이미 존재
 	    return ResponseEntity.ok(count == 0);
 	}
+	
+	// 인증메일 전송
+	@PostMapping("/sendEmail")
+    public int mailConfirm(@RequestBody AccountVO vo) {
+        int num = emailService.sendEmail(vo.getAccountEmail());
+        return num;
+    }
 
 	
 	
