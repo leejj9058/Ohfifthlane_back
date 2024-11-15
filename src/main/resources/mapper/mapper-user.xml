@@ -56,8 +56,13 @@
 	</select>
 	
 	<!-- accountId로 회원정보-->
+	<!-- 레벨을 가져오기 위해 account_tbl 조인-->
 	<select id="getUserIdByAccountId" parameterType="int" resultType="com.team03.Ohfifthlane_back.vo.UserVO">
-		select * from ohfifthlane.user_tbl where account_id = #{accountId}
+		select u.*, a.account_level
+		from ohfifthlane.user_tbl u 
+		join ohfifthlane.account_tbl a
+		on u.account_id = a.account_id 
+		where u.account_id = #{accountId}
 	</select>
 
 </mapper>

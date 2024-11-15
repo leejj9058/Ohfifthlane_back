@@ -11,6 +11,43 @@
    
       select * from ohfifthlane.notice_tbl where notice_id = #{noticeId}
    
+   </select>
+   
+   
+   <select id="getInquiry" resultType="com.team03.Ohfifthlane_back.vo.InquiryVO">
+      select * from ohfifthlane.inquiry_tbl order by inquiry_date asc 
    
    </select>
+   
+   
+   <select id="getInquiryDetail" parameterType="com.team03.Ohfifthlane_back.vo.InquiryVO" resultType="com.team03.Ohfifthlane_back.vo.InquiryVO">
+   
+      select * from ohfifthlane.inquiry_tbl where inquiry_id = #{inquiryId}
+   
+   </select>
+   
+   
+   <insert id="insertNotice" parameterType="com.team03.Ohfifthlane_back.vo.NoticeVO">
+   
+   	insert into ohfifthlane.notice_tbl(notice_title, notice_content, notice_date, user_id)
+	values( #{noticeTitle}, #{noticeContent}, now(), #{userId})
+	
+   </insert>
+   
+   
+   <insert id="insertInquiry" parameterType="com.team03.Ohfifthlane_back.vo.InquiryVO">
+   
+   	insert into ohfifthlane.inquiry_tbl(inquiry_title, inquiry_content, inquiry_date, user_id)
+	values( #{inquiryTitle}, #{inquiryContent}, now(), #{userId})
+	
+   </insert>
+   
+   
+   <delete id="deleteNotice" parameterType="com.team03.Ohfifthlane_back.vo.NoticeVO">
+   
+   delete from ohfifthlane.notice_tbl where notice_id = #{noticeId}
+   
+   
+   </delete>
 </mapper>
+
