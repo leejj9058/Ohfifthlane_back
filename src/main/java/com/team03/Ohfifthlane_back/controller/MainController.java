@@ -51,9 +51,21 @@ public class MainController {
 		}
 		
 		session.setAttribute("userId", userInfo.getUserId());
+		session.setAttribute("account_Level", userInfo.getAccountLevel());
+		
 		System.out.println("userId = " + userInfo.getUserId());
+		System.out.println("account_level : " + userInfo.getAccountLevel());
 		
 		return ResponseEntity.ok(user);
+	}
+	
+	
+	//사용자 레벨 가져오기
+	@GetMapping("/getUserLevel")
+	public ResponseEntity<?> getUserLevel(HttpSession session) {
+	    Integer userLevel = (Integer) session.getAttribute("account_Level");
+	    System.out.println("현재 로그인한 사용자 레벨 : " + userLevel);
+	    return ResponseEntity.ok(userLevel);
 	}
 	
 	@GetMapping("/getAccountId")
@@ -68,6 +80,7 @@ public class MainController {
 		session.invalidate();
 		return ResponseEntity.ok("로그아웃 되었습니다.");
 	}
+	
 
 	// 아이디 찾기 대충
 	@PostMapping("/findId")

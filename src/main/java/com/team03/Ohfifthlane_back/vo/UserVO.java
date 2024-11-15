@@ -9,7 +9,7 @@ public class UserVO {
 	private String userTel;
 	private String userAddress;
 	private int accountId;
-	
+	private int accountLevel;
 	public int getUserId() {
 		return userId;
 	}
@@ -52,19 +52,21 @@ public class UserVO {
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-	
+	public int getAccountLevel() {
+		return accountLevel;
+	}
+	public void setAccountLevel(int accountLevel) {
+		this.accountLevel = accountLevel;
+	}
 	
 	@Override
 	public String toString() {
 		return "UserVO [userId=" + userId + ", userName=" + userName + ", userSSNFront=" + userSSNFront
 				+ ", userSSNBack=" + userSSNBack + ", userTel=" + userTel + ", userAddress=" + userAddress
-				+ ", accountId=" + accountId + "]";
+				+ ", accountId=" + accountId + ", accountLevel=" + accountLevel + "]";
 	}
 	
-	
-	
-	
-	
+
 	
 	
 
