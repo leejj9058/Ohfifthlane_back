@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.team03.Ohfifthlane_back.dao.SearchDAO;
 import com.team03.Ohfifthlane_back.vo.ChargingStationVO;
+import com.team03.Ohfifthlane_back.vo.PublicParkingVO;
 
 
 
@@ -46,5 +47,13 @@ public class SearchController {
 		List<ChargingStationVO> chargingStationList = dao.getChargingStationList();
 		
 		return ResponseEntity.ok(chargingStationList);
+	}
+	
+	@PostMapping("/publicParkingList")
+	public ResponseEntity<?> getPublicParkingList() {
+		
+		List<PublicParkingVO> publicParkingList = dao.getPublicParkingList();
+		
+		return ResponseEntity.ok(publicParkingList);
 	}
 }
