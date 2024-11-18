@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.team03.Ohfifthlane_back.vo.RPZVO;
@@ -31,6 +32,12 @@ public class RPZDAO {
 	public int getRPZIdByRPZNum(String rpzNum) {
 		
 		return session.selectOne("getRPZIdByRPZNum", rpzNum);
+	}
+
+
+	public RPZVO getRPZById(int rpzId) {
+		
+		return session.selectOne("getRPZById", rpzId);
 	}
 
 	

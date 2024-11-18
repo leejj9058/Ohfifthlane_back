@@ -50,13 +50,23 @@
 		rpz_id
 		)
 		VALUES (#{userId},
-		#{reservation_start_time},
-		#{reservation_end_time},
-		#{reservation_day},
-		#{reservation_total_fee},
-		#{rpz_id}
+		#{reservationStartTime},
+		#{reservationEndTime},
+		#{reservationDay},
+		#{reservationTotalFee},
+		#{rpzId}
 		)
 		
 	</insert>
+	
+	<!-- rpzId로 rpz정보 가져오기 -->
+	<select id="getRPZById"
+		parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+
+		SELECT * FROM ohfifthlane.rpz_tbl
+		WHERE rpz_id = #{rpzId}
+
+	</select>
 
 </mapper>
