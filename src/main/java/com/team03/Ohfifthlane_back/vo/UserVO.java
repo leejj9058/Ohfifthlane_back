@@ -3,18 +3,25 @@ package com.team03.Ohfifthlane_back.vo;
 public class UserVO {
 	
 	private int userId;
+	private int accountId;
 	private String userName;
 	private String userSSNFront;
 	private String userSSNBack;
 	private String userTel;
 	private String userAddress;
-	private int accountId;
+	private int userPoint;
 	private int accountLevel;
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public int getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 	public String getUserName() {
 		return userName;
@@ -46,11 +53,11 @@ public class UserVO {
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
-	public int getAccountId() {
-		return accountId;
+	public int getUserPoint() {
+		return userPoint;
 	}
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setUserPoint(int userPoint) {
+		this.userPoint = userPoint;
 	}
 	public int getAccountLevel() {
 		return accountLevel;
@@ -58,15 +65,12 @@ public class UserVO {
 	public void setAccountLevel(int accountLevel) {
 		this.accountLevel = accountLevel;
 	}
-	
 	@Override
 	public String toString() {
-		return "UserVO [userId=" + userId + ", userName=" + userName + ", userSSNFront=" + userSSNFront
-				+ ", userSSNBack=" + userSSNBack + ", userTel=" + userTel + ", userAddress=" + userAddress
-				+ ", accountId=" + accountId + ", accountLevel=" + accountLevel + "]";
+		return "UserVO [userId=" + userId + ", accountId=" + accountId + ", userName=" + userName + ", userSSNFront="
+				+ userSSNFront + ", userSSNBack=" + userSSNBack + ", userTel=" + userTel + ", userAddress="
+				+ userAddress + ", userPoint=" + userPoint + ", accountLevel=" + accountLevel + "]";
 	}
-	
-
 	
 	
 

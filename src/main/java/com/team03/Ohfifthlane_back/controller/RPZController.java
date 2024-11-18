@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team03.Ohfifthlane_back.dao.RPZDAO;
@@ -21,14 +22,22 @@ public class RPZController {
 	@Autowired
 	RPZDAO dao;
 	
-	//반경 500m 리스트만 가져오기
+	// 1. 반경 500m 리스트만 가져오기
 	@PostMapping("/nearRPZList")
 	public ResponseEntity<List<RPZVO>> getNearRPZList(@RequestBody UserLocationVO ulVO) {
-		
 		
 		List<RPZVO> nearRPZList = dao.getNearRPZList(ulVO);
 		
 		return ResponseEntity.ok(nearRPZList);
+	}
+	
+	// 2. rpzId로 RPZ정보 가져오기
+	@PostMapping("/getRPZById")
+	public ResponseEntity<RPZVO> getRPZById(@RequestParam int rpzId) {
+		
+	    RPZVO rpz = dao.getRPZById(rpzId);
+	    
+	    return ResponseEntity.ok(rpz);
 	}
 	
 	

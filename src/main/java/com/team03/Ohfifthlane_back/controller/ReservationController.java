@@ -32,6 +32,10 @@ public class ReservationController {
 		// 반경 500m 거주자 우선 주차장 리스트 가져오기
 		List<RPZVO> RPZList = dao.getNearRPZList(dto.getUserLocationVo());
 		
+		if(RPZList.isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
+		
 		// 예약하려는 시작 시간
 		LocalTime reservationStartTime = dao.changeLocalTime(dto.getReservationVo().getReservationStartTime());
 		

@@ -74,6 +74,14 @@ public class MainController {
 		return ResponseEntity.ok(accountId);
 	}
 	
+	// userId 가져오기
+	@GetMapping("/getUserId")
+	public ResponseEntity<Integer> getUserId(HttpSession session) {
+		int accountId = (int) session.getAttribute("accountId");
+		UserVO user = dao.getUserIdByAccountId(accountId);
+		return ResponseEntity.ok(user.getUserId());
+	}
+	
 	@GetMapping("/goToLogout")
 	public ResponseEntity<?> goToLogout(HttpSession session) {
 		System.out.println("로그아웃");
@@ -158,7 +166,14 @@ public class MainController {
         int num = emailService.sendEmail(vo.getAccountEmail());
         return num;
     }
-
+	
+	// 포인트 가져오기
+	@GetMapping("/getUserPoint")
+	public ResponseEntity<Integer> getPoints(HttpSession session) {
+		int accountId = (int) session.getAttribute("accountId");
+		UserVO user = dao.getUserIdByAccountId(accountId);
+		return ResponseEntity.ok(user.getUserPoint());
+	}
 	
 	
 
