@@ -172,7 +172,7 @@ public class ReservationController {
 		UserVO user = adao.getUserIdByAccountId(accountId);
 
 		List<ReservationVO> list = dao.getReservationListByUserId(user.getUserId());
-
+		System.out.println(list);
 		// 예약 리스트가 비어있을 경우
 		if (list == null || list.isEmpty()) {
 			return ResponseEntity.badRequest().build();
