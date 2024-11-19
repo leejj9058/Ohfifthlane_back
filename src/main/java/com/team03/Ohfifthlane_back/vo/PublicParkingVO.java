@@ -9,6 +9,8 @@ public class PublicParkingVO {
 	private String publicParkingAddress;
 	private BigDecimal publicParkingLat;
 	private BigDecimal publicParkingLon;
+	private int publicParkingTotal;
+	
 	public int getPublicParkingId() {
 		return publicParkingId;
 	}
@@ -39,12 +41,21 @@ public class PublicParkingVO {
 	public void setPublicParkingLon(BigDecimal publicParkingLon) {
 		this.publicParkingLon = publicParkingLon;
 	}
+	
+	public int getPublicParkingTotal() {
+		return publicParkingTotal;
+	}
+	public void setPublicParkingTotal(int publicParkingTotal) {
+		this.publicParkingTotal = publicParkingTotal;
+	}
 	@Override
 	public String toString() {
 		return "PublicParkingVO [publicParkingId=" + publicParkingId + ", publicParkingName=" + publicParkingName
 				+ ", publicParkingAddress=" + publicParkingAddress + ", publicParkingLat=" + publicParkingLat
-				+ ", publicParkingLon=" + publicParkingLon + "]";
+				+ ", publicParkingLon=" + publicParkingLon + ", publicParkingTotal=" + publicParkingTotal + "]";
 	}
+	
+
 	
 	
 	
