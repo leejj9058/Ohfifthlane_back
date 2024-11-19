@@ -38,26 +38,6 @@
 
 	</select>
 
-	<!-- 해당 주차구역 예약 생성하기 -->
-	<insert id="putReservationByRPZId"
-		parameterType="com.team03.Ohfifthlane_back.vo.ReservationVO">
-
-		INSERT INTO reservation_tbl (user_id,
-		reservation_start_time,
-		reservation_end_time,
-		reservation_day,
-		reservation_total_fee,
-		rpz_id
-		)
-		VALUES (#{userId},
-		#{reservationStartTime},
-		#{reservationEndTime},
-		#{reservationDay},
-		#{reservationTotalFee},
-		#{rpzId}
-		)
-		
-	</insert>
 	
 	<!-- 해당 주차구역 예약 생성하기 -->
 	<insert id="insertReservationByRPZId"

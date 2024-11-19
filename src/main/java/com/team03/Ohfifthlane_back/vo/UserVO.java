@@ -11,6 +11,7 @@ public class UserVO {
 	private String userAddress;
 	private int userPoint;
 	private int accountLevel;
+	
 	public int getUserId() {
 		return userId;
 	}

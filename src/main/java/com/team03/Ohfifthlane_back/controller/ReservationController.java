@@ -1,6 +1,5 @@
 package com.team03.Ohfifthlane_back.controller;
 
-import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.Iterator;
 import java.util.List;
@@ -15,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team03.Ohfifthlane_back.dao.ReservationDAO;
+import com.team03.Ohfifthlane_back.dao.UserDAO;
 import com.team03.Ohfifthlane_back.dto.RPZDTO;
 import com.team03.Ohfifthlane_back.dto.ReservationDTO;
 import com.team03.Ohfifthlane_back.vo.RPZVO;
 import com.team03.Ohfifthlane_back.vo.ReservationVO;
+import com.team03.Ohfifthlane_back.vo.UserVO;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api")
@@ -27,23 +30,25 @@ public class ReservationController {
 
 	@Autowired
 	ReservationDAO dao;
+	@Autowired
+	UserDAO adao;
 
 	// 1. 지정 시간 예약 가능 주차장 리스트 가져오기 (날짜, 시작 시간, 종료 시간)
-		@PostMapping("/getRPZListByTime")
-		public ResponseEntity<List<RPZVO>> getReservationListByTime(@RequestBody RPZDTO dto) {
-			// dto -> UserLocationVO 사용자 위치 정보, ReservationVO 예약정보 (날짜, 시작시각, 종료시각)
-			// 반경 500m 거주자 우선 주차장 리스트 가져오기
-			List<RPZVO> RPZList = dao.getNearRPZList(dto.getUserLocationVo());
-			
-			if(RPZList.isEmpty()) {
-				return ResponseEntity.badRequest().build();
-			}
-			
-			// 예약하려는 시작 시간
-			LocalTime reservationStartTime = dao.changeLocalTime(dto.getReservationVo().getReservationStartTime());
-			
-			// 예약하려는 종료 시간
-			LocalTime reservationEndTime = dao.changeLocalTime(dto.getReservationVo().getReservationEndTime());
+	@PostMapping("/getRPZListByTime")
+	public ResponseEntity<List<RPZVO>> getReservationListByTime(@RequestBody RPZDTO dto) {
+		// dto -> UserLocationVO 사용자 위치 정보, ReservationVO 예약정보 (날짜, 시작시각, 종료시각)
+		// 반경 500m 거주자 우선 주차장 리스트 가져오기
+		List<RPZVO> RPZList = dao.getNearRPZList(dto.getUserLocationVo());
+
+		if (RPZList.isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
+
+		// 예약하려는 시작 시간
+		LocalTime reservationStartTime = dao.changeLocalTime(dto.getReservationVo().getReservationStartTime());
+
+		// 예약하려는 종료 시간
+		LocalTime reservationEndTime = dao.changeLocalTime(dto.getReservationVo().getReservationEndTime());
 
 			// iterator 생성
 			Iterator<RPZVO> iterator = RPZList.iterator();
@@ -106,26 +111,25 @@ public class ReservationController {
 
 		// 예약 가능 표시
 		boolean availability = true;
-		
+
 		// 예약하려는 시작 시간
 		LocalTime reservationStartTime = dao.changeLocalTime(vo.getReservationStartTime());
-				
+
 		// 예약하려는 종료 시간
 		LocalTime reservationEndTime = dao.changeLocalTime(vo.getReservationEndTime());
-
 
 		// 해당 주차 구역의 예약 리스트 가져오기
 		List<ReservationVO> reservationlist = dao.getReservationListByRPZId(vo.getRPZId());
 
 		// 예약 겹치는지 확인 하기
 		for (ReservationVO reserv : reservationlist) {
-			
+
 			// 기존 예약의 시작 시간
 			LocalTime previousReservationStartTime = dao.changeLocalTime(reserv.getReservationStartTime());
-			
+
 			// 기존 예약의 종료 시간
-			LocalTime previousReservationEndTime = dao.changeLocalTime(reserv.getReservationEndTime());	
-			
+			LocalTime previousReservationEndTime = dao.changeLocalTime(reserv.getReservationEndTime());
+
 			// 시작시각 비교 (예약 시작 시각이 기존 예약시간 사이에 있는지)
 			if (reservationStartTime.isBefore(previousReservationEndTime)
 					&& reservationStartTime.isAfter(previousReservationStartTime)) {
@@ -147,18 +151,33 @@ public class ReservationController {
 			return ResponseEntity.badRequest().build();
 		}
 
-
 		return ResponseEntity.ok().build();
-	}
-	
+	}	
+
 	// 3. 해당 주차 구역 결제하기
-		@PostMapping("/addReservation")
-		public ResponseEntity<String> addReservation(@RequestBody ReservationDTO dto) {
-			System.out.println(dto);
-			dao.insertReservation(dto);
-			
+	@PostMapping("/addReservation")
+	public ResponseEntity<String> addReservation(@RequestBody ReservationDTO dto) {
+		System.out.println(dto);
+		dao.insertReservation(dto);
+
 		return ResponseEntity.ok("성공");
+	}
+
+	// 4. 주차구역 아이디로 예약 가져오기
+	@GetMapping("/getReservationListByUserId")
+	public ResponseEntity<List<ReservationVO>> getReservationListByUserId(HttpSession session) {
+		int accountId = (int) session.getAttribute("accountId");
+
+		// user 받아오기
+		UserVO user = adao.getUserIdByAccountId(accountId);
+
+		List<ReservationVO> list = dao.getReservationListByUserId(user.getUserId());
+
+		// 예약 리스트가 비어있을 경우
+		if (list == null || list.isEmpty()) {
+			return ResponseEntity.badRequest().build();
 		}
-		
+		return ResponseEntity.ok(list);
+	}
 
 }
