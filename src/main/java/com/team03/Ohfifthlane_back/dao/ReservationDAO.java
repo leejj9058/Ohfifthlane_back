@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.team03.Ohfifthlane_back.dto.ReservationDTO;
 import com.team03.Ohfifthlane_back.vo.RPZVO;
 import com.team03.Ohfifthlane_back.vo.ReservationVO;
 import com.team03.Ohfifthlane_back.vo.UserLocationVO;
@@ -35,8 +36,14 @@ public class ReservationDAO {
 	}
 	
 	public LocalTime changeLocalTime(String timeString) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return LocalTime.parse(timeString, formatter);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm[:ss]");
+		LocalTime time = LocalTime.parse(timeString, formatter);
+        return time.withSecond(0); // 초 단위 제거
+	}
+
+	public void insertReservation(ReservationDTO dto) {
+		System.out.println("mapper vo = " + dto);
+		session.insert("insertReservationByRPZId", dto);
 	}
 	
 }

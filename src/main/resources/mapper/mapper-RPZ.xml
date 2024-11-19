@@ -59,6 +59,27 @@
 		
 	</insert>
 	
+	<!-- 해당 주차구역 예약 생성하기 -->
+	<insert id="insertReservationByRPZId"
+		parameterType="com.team03.Ohfifthlane_back.dto.ReservationDTO">
+
+		INSERT INTO ohfifthlane.reservation_tbl (user_id,
+		reservation_start_time,
+		reservation_end_time,
+		reservation_day,
+		reservation_total_fee,
+		rpz_id
+		)
+		VALUES (#{userId},
+		#{reservationStartTime},
+		#{reservationEndTime},
+		#{reservationDay},
+		#{reservationTotalFee},
+		#{rpzId}
+		)
+		
+	</insert>
+	
 	<!-- rpzId로 rpz정보 가져오기 -->
 	<select id="getRPZById"
 		parameterType="int"
