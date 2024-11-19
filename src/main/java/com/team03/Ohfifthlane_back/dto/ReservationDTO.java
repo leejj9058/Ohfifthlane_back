@@ -1,6 +1,5 @@
 package com.team03.Ohfifthlane_back.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalTime;
 
 public class ReservationDTO {

@@ -46,4 +46,10 @@ public class ReservationDAO {
 		session.insert("insertReservationByRPZId", dto);
 	}
 	
+	// userId로 예약 정보 가져오기
+	public List<ReservationVO> getReservationListByUserId(int userId) {
+		List<ReservationVO> list = session.selectList("getReservationListByUserId", userId);
+		return list;
+	}
+	
 }
