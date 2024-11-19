@@ -24,8 +24,9 @@
 	</insert>
 	
 	<!-- userId로 예약 리스트 가져오기 -->
-	<select id="getReservationListByUserId" parameterType="int" resultType="com.team03.Ohfifthlane_back.vo.ReservationVO">
-		select * from ohfifthlane.reservation_tbl where user_id = #{userId}
+	<select id="getReservationListByUserId" parameterType="int" resultType="com.team03.Ohfifthlane_back.dto.ReservationDTO">
+		SELECT rpz.rpz_num, rpz.rpz_address, reservation.reservation_day, reservation.reservation_start_time, reservation.reservation_end_time FROM ohfifthlane.reservation_tbl reservation join ohfifthlane.rpz_tbl rpz on reservation.rpz_id = rpz.rpz_id  
+		 where reservation.user_id = #{userId}
 	
 	</select>
 </mapper>

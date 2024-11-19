@@ -10,7 +10,21 @@ public class ReservationDTO {
 	private String reservationDay;
 	private int reservationTotalFee;
 	private int rpzId;
+	private String rpzNum;
+	private String rpzAddress;
 	
+	public String getRpzNum() {
+		return rpzNum;
+	}
+	public void setRpzNum(String rpzNum) {
+		this.rpzNum = rpzNum;
+	}
+	public String getRpzAddress() {
+		return rpzAddress;
+	}
+	public void setRpzAddress(String rpzAddress) {
+		this.rpzAddress = rpzAddress;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -51,7 +65,8 @@ public class ReservationDTO {
 	public String toString() {
 		return "ReservationDTO [userId=" + userId + ", reservationStartTime=" + reservationStartTime
 				+ ", reservationEndTime=" + reservationEndTime + ", reservationDay=" + reservationDay
-				+ ", reservationTotalFee=" + reservationTotalFee + ", rpzId=" + rpzId + "]";
+				+ ", reservationTotalFee=" + reservationTotalFee + ", rpzId=" + rpzId + ", rpzNum=" + rpzNum
+				+ ", rpzAddress=" + rpzAddress + "]";
 	}
 
 	
