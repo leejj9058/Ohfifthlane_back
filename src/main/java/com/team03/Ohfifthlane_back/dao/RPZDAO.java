@@ -18,7 +18,7 @@ public class RPZDAO {
 
 	public List<RPZVO> getNearRPZList(UserLocationVO ulVO) {
 		
-		return session.selectList("getNearRPZList", ulVO);
+		return session.selectList("getNearRPZListHaveDistance", ulVO);
 	}
 
 
