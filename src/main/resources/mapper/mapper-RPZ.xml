@@ -15,6 +15,26 @@
 
 	</select>
 	
+	<!-- 반경500미터 주차장 거리포함 가져오기 -->
+	<select id="getNearRPZListHaveDistance"
+		parameterType="com.team03.Ohfifthlane_back.vo.UserLocationVO"
+		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+
+		SELECT rpz_id, 
+		    rpz_num, 
+		    rpz_address, 
+		    rpz_manage_tel, 
+		    rpz_manage_name, 
+		    rpz_fee,
+		    ROUND(CAST(ST_Distance(rpz_coord, ST_SetSRID(ST_MakePoint(#{userLon}, #{userLat}), 4326)) AS NUMERIC), 2) AS rpz_distance
+     FROM ohfifthlane.rpz_tbl
+		WHERE
+		ST_DWithin(rpz_coord,
+		ST_MakePoint(#{userLon}, #{userLat})::geography,
+		500)
+
+	</select>
+	
 	<!-- 입력한 주자구획번호가 db에 있는지 확인 -->
 	<select id="existsByRPZNum" parameterType="String" resultType="Boolean">
 	
@@ -69,5 +89,6 @@
 		WHERE rpz_id = #{rpzId}
 
 	</select>
+	
 
 </mapper>

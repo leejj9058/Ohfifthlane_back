@@ -16,7 +16,15 @@ public class RPZVO {
     private int rpzFee;            // INTEGER => Integer
     private Point rpzCoord;            // GEOMETRY(Point, 4326) => Point (JTS 라이브러리 사용)
     private Long userId;
+    private Double rpzDistance; // 주차장 추천 시 주차장과의 거리
     
+    
+	public Double getRpzDistance() {
+		return rpzDistance;
+	}
+	public void setRpzDistance(Double rpzDistance) {
+		this.rpzDistance = rpzDistance;
+	}
 	public int getRpzId() {
 		return rpzId;
 	}
@@ -81,7 +89,8 @@ public class RPZVO {
 	public String toString() {
 		return "RPZVO [rpzId=" + rpzId + ", rpzNum=" + rpzNum + ", rpzLat=" + rpzLat + ", rpzLon=" + rpzLon
 				+ ", rpzAddress=" + rpzAddress + ", rpzManageTel=" + rpzManageTel + ", rpzManageName=" + rpzManageName
-				+ ", rpzFee=" + rpzFee + ", rpzCoord=" + rpzCoord + ", userId=" + userId + "]";
+				+ ", rpzFee=" + rpzFee + ", rpzCoord=" + rpzCoord + ", userId=" + userId + ", rpzDistance="
+				+ rpzDistance + "]";
 	}
     
 	
