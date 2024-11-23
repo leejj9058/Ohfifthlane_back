@@ -50,7 +50,7 @@ public class RPZController {
 	}
 	
 	
-	// 1. 지정 시간 예약 가능 주차장 리스트 가져오기 (날짜, 시작 시간, 종료 시간)
+	// 3. 지정 시간 예약 가능 주차장 리스트 가져오기 (날짜, 시작 시간, 종료 시간)
 		@PostMapping("/getRecommendRPZList")
 		public ResponseEntity<List<RPZVO>> getReservationListByTime(@RequestBody RPZDTO dto) {
 			// dto -> UserLocationVO 사용자 위치 정보, ReservationVO 예약정보 (날짜, 시작시각, 종료시각)
@@ -111,7 +111,7 @@ public class RPZController {
 			        .sorted(Comparator.comparingDouble(RPZVO::getRpzDistance)) // 거리 기준 정렬
 			        .limit(5) // 상위 5개 추출
 			        .toList(); // 리스트로 변환 (Java 16 이상)
-				
+				System.out.println(topFiveRPZList);
 				return ResponseEntity.ok(topFiveRPZList);
 			}
 	
