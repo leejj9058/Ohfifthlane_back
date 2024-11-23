@@ -22,7 +22,9 @@
 
 		SELECT rpz_id, 
 		    rpz_num, 
-		    rpz_address, 
+		    rpz_address,
+		    rpz_lat,
+		    rpz_lon, 
 		    rpz_manage_tel, 
 		    rpz_manage_name, 
 		    rpz_fee,
