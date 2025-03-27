@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper-RPZ">
+
+	<!-- 반경500미터 주차장만 가져오기 -->
+	<select id="getNearRPZList"
+		parameterType="com.team03.Ohfifthlane_back.vo.UserLocationVO"
+		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+
+		SELECT * FROM ohfifthlane.rpz_tbl
+		WHERE
+		ST_DWithin(rpz_coord,
+		ST_MakePoint(#{userLon}, #{userLat})::geography,
+		500)
+
+	</select>
+	
+	<!-- 반경500미터 주차장 거리포함 가져오기 -->
+	<select id="getNearRPZListHaveDistance"
+		parameterType="com.team03.Ohfifthlane_back.vo.UserLocationVO"
+		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+
+		SELECT rpz_id, 
+		    rpz_num, 
+		    rpz_address,
+		    rpz_lat,
+		    rpz_lon, 
+		    rpz_manage_tel, 
+		    rpz_manage_name, 
+		    rpz_fee,
+		    ROUND(CAST(ST_Distance(rpz_coord, ST_SetSRID(ST_MakePoint(#{userLon}, #{userLat}), 4326)) AS NUMERIC), 2) AS rpz_distance
+     FROM ohfifthlane.rpz_tbl
+		WHERE
+		ST_DWithin(rpz_coord,
+		ST_MakePoint(#{userLon}, #{userLat})::geography,
+		500)
+
+	</select>
+	
+	<!-- 입력한 주자구획번호가 db에 있는지 확인 -->
+	<select id="existsByRPZNum" parameterType="String" resultType="Boolean">
+	
+		select count(*) > 0 from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
+	
+	</select>
+	
+	<!-- 입력한 주자구획번호로 주차id가져오기 -->
+	<select id="getRPZIdByRPZNum" parameterType="String" resultType="int">
+	
+		select rpz_id from ohfifthlane.rpz_tbl where rpz_num = #{rpzNum}
+	
+	</select>
+
+	<!-- 주차구역 아이디로 예약 가져오기 -->
+	<select id="getReservationListByRPZId" parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.ReservationVO">
+
+		SELECT * FROM ohfifthlane.reservation_tbl
+		WHERE rpz_id = #{rpzId}
+
+	</select>
+
+	
+	<!-- 해당 주차구역 예약 생성하기 -->
+	<insert id="insertReservationByRPZId"
+		parameterType="com.team03.Ohfifthlane_back.dto.ReservationDTO">
+
+		INSERT INTO ohfifthlane.reservation_tbl (user_id,
+		reservation_start_time,
+		reservation_end_time,
+		reservation_day,
+		reservation_total_fee,
+		rpz_id
+		)
+		VALUES (#{userId},
+		#{reservationStartTime},
+		#{reservationEndTime},
+		#{reservationDay},
+		#{reservationTotalFee},
+		#{rpzId}
+		)
+		
+	</insert>
+	
+	<!-- rpzId로 rpz정보 가져오기 -->
+	<select id="getRPZById"
+		parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.RPZVO">
+
+		SELECT * FROM ohfifthlane.rpz_tbl
+		WHERE rpz_id = #{rpzId}
+
+	</select>
+	
+
+</mapper>

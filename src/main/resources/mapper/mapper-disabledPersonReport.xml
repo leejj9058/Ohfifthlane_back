@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper-disabledPersonReport">
+
+	<!-- 장애인신고내용 db에 저장 -->
+	<insert id="createDisabledPersonReport"
+		parameterType="com.team03.Ohfifthlane_back.vo.DisabledPersonReportVO">
+
+		insert into
+		ohfifthlane.disabled_person_report_tbl(user_id,
+		disabled_person_report_image, disabled_person_report_time,
+		disabled_person_report_status, disabled_person_report_lat,
+		disabled_person_report_lon, disabled_person_report_car_number,
+		disabled_person_report_address) values
+		(#{userId},
+		#{disabledPersonReportImage}, #{disabledPersonReportTime},
+		#{disabledPersonReportStatus},
+		#{disabledPersonReportLat},
+		#{disabledPersonReportLon}, #{disabledPersonReportCarNumber},
+		#{disabledPersonReportAddress})
+
+	</insert>
+
+	<!-- 장애인신고리스트 가져오기 -->
+	<select id="getDisabledPersonReportList"
+		resultType="com.team03.Ohfifthlane_back.vo.DisabledPersonReportVO">
+
+		select * from ohfifthlane.disabled_person_report_tbl
+
+	</select>
+
+
+	<!-- 장애인신고 상세정보 -->
+	<select id="getDisabledPersonReportByDprId" parameterType="int"
+		resultType="com.team03.Ohfifthlane_back.vo.DisabledPersonReportVO">
+
+		select
+			dprtbl.disabled_person_report_id,
+			dprtbl.disabled_person_report_image,
+			dprtbl.disabled_person_report_time,
+			dprtbl.disabled_person_report_status,
+			dprtbl.disabled_person_report_lat,
+			dprtbl.disabled_person_report_lon,
+			dprtbl.disabled_person_report_address,
+			dprtbl.disabled_person_report_car_number,
+			utbl.user_name,
+			utbl.user_tel 
+			from ohfifthlane.disabled_person_report_tbl dprtbl 
+			join ohfifthlane.user_tbl utbl 
+			on dprtbl.user_id = utbl.user_id 
+			where dprtbl.disabled_person_report_id = #{disabledPersonReportId}
+
+	</select>
+
+
+	<!-- 신고상태변경 -->
+	<update id="updateDisabledPersonReportStatus"
+		parameterType="com.team03.Ohfifthlane_back.vo.DisabledPersonReportVO">
+
+		update ohfifthlane.disabled_person_report_tbl
+		set
+		disabled_person_report_status = #{disabledPersonReportStatus}
+		where
+		disabled_person_report_id = #{disabledPersonReportId}
+
+	</update>
+
+</mapper>

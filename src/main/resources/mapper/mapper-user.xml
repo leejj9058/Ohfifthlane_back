@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper-user">
+
+	<select id="getUserByIdAndPassword"
+		resultType="com.team03.Ohfifthlane_back.vo.AccountVO"
+		parameterType="com.team03.Ohfifthlane_back.vo.AccountVO">
+
+		select *
+		from
+		ohfifthlane.account_tbl
+		where account_email = #{accountEmail} and
+		account_password = #{accountPassword}
+
+	</select>
+
+	<!-- 아이디찾기 -->
+	<select id="getUserEmailByNameAndUserSSN" resultType="String"
+		parameterType="com.team03.Ohfifthlane_back.vo.UserVO">
+
+		select account_email from ohfifthlane.account_tbl a
+		join ohfifthlane.user_tbl u on a.account_id = u.account_id
+		where u.user_name = #{userName} and u.user_ssn_front = #{userSSNFront} and
+		u.user_ssn_back = #{userSSNBack}
+
+	</select>
+
+	<!-- 계정 생성 -->
+	<insert id="createAccount"
+		parameterType="com.team03.Ohfifthlane_back.vo.AccountVO"
+		useGeneratedKeys="true" keyProperty="accountId">
+
+		insert into ohfifthlane.account_tbl (account_email, account_password,
+		account_level)
+		values (#{accountEmail}, #{accountPassword}, 2)
+
+	</insert>
+
+	<!-- 사용자 생성 -->
+	<insert id="createUser"
+		parameterType="com.team03.Ohfifthlane_back.vo.UserVO">
+
+		insert into ohfifthlane.user_tbl (account_id, user_name, user_ssn_front,
+		user_ssn_back, user_tel, user_address)
+		values (#{accountId},
+		#{userName}, #{userSSNFront}, #{userSSNBack}, #{userTel},
+		#{userAddress})
+
+	</insert>
+
+	<!-- 이메일 중복체크 -->
+	<select id="checkEmail" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM ohfifthlane.account_tbl
+		WHERE account_email = #{accountEmail}
+	</select>
+	
+	<!-- accountId로 회원정보-->
+	<!-- 레벨을 가져오기 위해 account_tbl 조인-->
+	<select id="getUserIdByAccountId" parameterType="int" resultType="com.team03.Ohfifthlane_back.vo.UserVO">
+		select u.*, a.account_level
+		from ohfifthlane.user_tbl u 
+		join ohfifthlane.account_tbl a
+		on u.account_id = a.account_id 
+		where u.account_id = #{accountId}
+	</select>
+	
+
+</mapper>
